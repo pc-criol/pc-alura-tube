@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import config from "../../config.json";
+import Banner from "./Banner";
 
 
 const StyledHeader = styled.div`
@@ -28,7 +29,7 @@ const StyledHeader = styled.div`
 export default function Header() {
   return (
     <StyledHeader>
-      {/* <img src="banner.jpg" /> */}
+      <Banner />
       <section className="user_info">
         <img src={`https://github.com/${config.github}.png`} />
         <div key={config.github}>
