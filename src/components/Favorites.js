@@ -9,10 +9,10 @@ export default function Favorites(props) {
       <h2>AluraTubes Favoritos</h2>
       {favorites.map((favorite) => {
         return (
-          <section className="user_info">
-            <img src={`${favorite.pic}`} />
-            <div key={favorite.name}>
-              <a href={`https://www.youtube.com/c/${favorite.channel}`} target="">
+          <section className="user_info" key={favorite.name}>
+            <img src={`${favorite.pic}`} key={favorite.pic} />
+            <div key={favorite}>
+              <a href={`https://www.youtube.com/c/${favorite.channel}`} target="" key={favorite.channel}>
                 @{favorite.name}
               </a>
             </div>
