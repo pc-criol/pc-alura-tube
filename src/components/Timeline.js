@@ -1,33 +1,42 @@
 import styled from "styled-components";
 
-export default function TimeLine(props) {
+export default function TimeLine({searchValue, ...props}) {
   const playlistNames = Object.keys(props.playlists);
   //   Statement
   //   Retorno por expressão
+
+  console.log(props.searchValue);
+
   return playlistNames.map((playlist) => {
     const videos = props.playlists[playlist];
-    console.log(videos);
     return (
       <StyledTimeline key={playlist}>
-        <section>
+        <section key={videos}>
           <h2>{playlist}</h2>
-          <div>
-            {videos.map((video) => {
-              return (
-                <a href={video.url} key={video.url}>
-                  <img src={video.thumb} />
-                  <span>{video.title}</span>
-                </a>
-              );
-            })}
+          <div key={videos}>
+            {videos
+              .filter((video) => {
+                const videoTitleNormalized = video.title.toLowerCase();
+                const searchValueNormalized = searchValue.toLowerCase();
+                return ( videoTitleNormalized.includes(searchValueNormalized));
+              })
+              .map((video) => {
+                return (
+                  <a href={video.url} key={video.url}>
+                    <img src={video.thumb} />
+                    <span>{video.title}</span>
+                  </a>
+                );
+              })}
+            s
           </div>
         </section>
       </StyledTimeline>
     );
   });
 }
- 
- const StyledTimeline = styled.div`
+
+const StyledTimeline = styled.div`
   flex: 1;
   width: 100%;
   padding: 16px;
@@ -51,13 +60,12 @@ export default function TimeLine(props) {
     overflow: hidden;
     padding: 16px;
     div {
-      
       width: calc(100vw - 16px * 4);
       display: grid;
       grid-gap: 16px;
-      grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       grid-auto-flow: column;
-      grid-auto-columns: minmax(200px,1fr);
+      grid-auto-columns: minmax(200px, 1fr);
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
       a {

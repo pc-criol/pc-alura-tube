@@ -1,3 +1,4 @@
+import React from "react";
 import config from "../config.json";
 import { CSSReset } from "../src/components/CSSReset";
 import Menu from "../src/components/Menu";
@@ -14,13 +15,15 @@ const StyledHomePage = styled.div`
 `;
 
 function HomePage() {
+  const [searchValue, setSearchValue] = React.useState("");
+
   return (
     <>
       <CSSReset />
         <StyledHomePage>
-          <Menu />
+          <Menu searchValue={searchValue} setSearchValue={setSearchValue} />
           <Header />
-          <TimeLine playlists={config.playlists}>Conteúdo</TimeLine>
+          <TimeLine searchValue={searchValue} playlists={config.playlists}>Conteúdo</TimeLine>
           <Favorites favorites={config.favorites}/>
         </StyledHomePage>
     </>

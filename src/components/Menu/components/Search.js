@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components"
 
 const StyledSearch = styled.div`
@@ -39,8 +38,7 @@ const StyledSearch = styled.div`
 // Search
 // Informação sempre desce
 
-export default function Search() {
-    const [searchValue, setSearchValue] = React.useState("Teste");
+export default function Search({searchValue, setSearchValue}) {
     return (
         <StyledSearch>
             <input type="text" onChange={(e) => setSearchValue(e.target.value)}/>
